@@ -270,8 +270,29 @@ namespace Lab5
         public void Task12(int[][] array)
         {
             // code here
-            Array.Sort(array, (a, b) => a.Sum().CompareTo(b.Sum()));
+            int[] sum = new int[array.Length];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = 0; j < array[i].Length; j++)
+                {
+                    sum[i] += array[i][j];
+                }
+            }
+
+            for (int i = 0; i < sum.Length - 1; i++)
+            {
+                for (int j = 0; j < sum.Length - 1 - i; j++)
+                {
+                    if (sum[j] > sum[j + 1])
+                    {
+                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
+                        (sum[j], sum[j + 1]) = (sum[j + 1], sum[j]);
+                    }
+                }
+            }
             // end
         }
     }
 }
+
